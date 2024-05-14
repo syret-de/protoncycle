@@ -38,7 +38,7 @@ To set up and use Protoncycle, follow these detailed instructions:
 4. **Check VPN Proxy Connection**
    - Continuously check your public IP address to ensure the VPN is cycling:
    ```bash
-   while true; do curl --proxy http://127.0.0.1:8080 http://ifconfig.me; echo; sleep .2; done
+   while true; do curl --proxy http://127.0.0.1:8080 http://ifconfig.me; echo; sleep 1; done
    ```
 
 ### How Protoncycle Works

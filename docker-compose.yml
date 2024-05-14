@@ -1,0 +1,41 @@
+---
+services:
+  vpn1:
+    image: walt3rl/proton-privoxy
+    container_name: vpn1
+    env_file:
+      - .env
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    cap_add:
+      - NET_ADMIN
+    networks:
+      - app-network
+
+  vpn2:
+    image: walt3rl/proton-privoxy
+    container_name: vpn2
+    env_file:
+      - .env
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    networks:
+      - app-network
+
+  mubeng:
+    image: kitabisa/mubeng
+    container_name: mubeng
+    command:
+      -a 0.0.0.0:8080 -f /proxy.txt -t 1s -w
+    ports:
+      - 8080:8080
+    volumes:
+      - ./proxy.txt:/proxy.txt
+    networks:
+      - app-network
+
+networks:
+  app-network:

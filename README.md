@@ -2,6 +2,10 @@
 
 **Protoncycle** is a work-in-progress proxy designed to obtain a new public IP address using ProtonVPN. It leverages Docker and Docker Compose to maintain a consistent and secure VPN environment, making it ideal for changing your IP address during pentesting or bug bounty activities.
 
+
+> Disclaimer: Protoncycle is still under development and may have bugs and network instability.
+
+
 ## Prerequisites
 
 1. **Docker and Docker Compose Installation**

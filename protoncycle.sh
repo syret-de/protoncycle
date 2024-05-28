@@ -21,18 +21,24 @@ echo "http://vpn2:8080" >> "$filename"
 
 docker compose up -d
 
+# I have added the echo outside of the docker exec, cause sometimes mubeng dies and then proxy.txt gets empty
+
 while true; do
     sleep "$sleep_time"
     echo "Restarting VPN 1"
+    docker exec -t mubeng sh -c "echo http://vpn2:8080 > proxy.txt"
+    echo http://vpn2:8080 > ./proxy.txt 
     docker exec -t vpn1 protonvpn c -f &>/dev/null &
-    docker exec -t mubeng sh -c "echo 'http://vpn2:8080' > /proxy.txt"
     sleep 20
-    docker exec -t mubeng sh -c "echo 'http://vpn1:8080' >> /proxy.txt"
+    docker exec -t mubeng sh -c "echo http://vpn1:8080 >> proxy.txt"
+    echo http://vpn1:8080 >> ./proxy.txt
 
     sleep "$sleep_time"
     echo "Restarting VPN 2"
-    docker exec -t vpn2 protonvpn c -r &>/dev/null &
-    docker exec -t mubeng sh -c "echo 'http://vpn1:8080' > /proxy.txt"
+    docker exec -t mubeng sh -c "echo http://vpn1:8080 > proxy.txt"
+    echo http://vpn1:8080 > ./proxy.txt
+    docker exec -t vpn2 protonvpn c -f &>/dev/null &
     sleep 20
-    docker exec -t mubeng sh -c "echo 'http://vpn2:8080' >> /proxy.txt"
+    docker exec -t mubeng sh -c "echo http://vpn2:8080 >> proxy.txt"
+    echo http://vpn2:8080 >> ./proxy.txt
 done

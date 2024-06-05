@@ -46,6 +46,10 @@
    while true; do curl --proxy http://127.0.0.1:8080 http://ifconfig.me; echo; sleep 1; done
    ```
 
+5. **If you wan't to see the logs**
+```
+docker-compose logs -f
+```
 
 ### Additional Configuration
 
@@ -80,14 +84,12 @@ To ensure the certificates are properly added while Protoncycle is running:
 
 
 ## How Protoncycle Works
-
 ![](./diagram.png)
 
 The protoncycle.sh script restarts the VPN connections and adapts the list of accessible proxies for Mubeng. Then it sleeps for a specified interval and starts again. This way, you always have at least one accessible VPN connection.
 
 
 ## Credits
-
 The Protoncycle project relies on the work of:
   - [Proton-privoxy](https://github.com/walterl/proton-privoxy)
   - [Mubeng](https://github.com/kitabisa/mubeng)

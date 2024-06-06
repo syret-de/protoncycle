@@ -5,6 +5,8 @@
 
 > Disclaimer: Protoncycle is still under development and may have bugs and network instability.
 
+> This tool as been developed by Yann Grossenbacher while working for Syret Gmbh.
+
 
 ## Prerequisites
 
